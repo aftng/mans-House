@@ -10,7 +10,7 @@ public class Title_Font : MonoBehaviour
     //色情報
     private float cla;
     private float claMax = 255;
-    private float Speed = 0.001f;
+    private float Speed = 0.01f;
     //時間カウント
     private float Timecount;
     private float Statecount = 1;
@@ -18,7 +18,7 @@ public class Title_Font : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
     }
-    void Update()
+    void FixedUpdate()
     {
         //時間取得
         Timecount += Time.deltaTime;

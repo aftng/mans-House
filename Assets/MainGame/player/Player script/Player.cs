@@ -84,20 +84,22 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (playerstop) 
+        if (!playerstop)
+        {
+            //ŽÎ‚ßˆÚ“®‹ÖŽ~
+            if (playermove.x != 0 && playermove.y != 0)
+            {
+                playermove.x = 0;
+                playermove.y = 0;
+            }
+
+            rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
+            AnimateMove = rb.velocity;
+        }
+        else
         {
             rb.velocity = Vector2.zero;
-            return;
         }
-        //ŽÎ‚ßˆÚ“®‹ÖŽ~
-        if (playermove.x != 0 && playermove.y != 0)
-        {
-            playermove.x = 0;
-            playermove.y = 0;
-        }
-
-        rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
-        AnimateMove = rb.velocity;
         PlayerFootstepSound();
         Animate();
     }

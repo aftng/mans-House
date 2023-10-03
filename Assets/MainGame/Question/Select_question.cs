@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class Select_question : MonoBehaviour
 {
-    //クエスチョンオブジェクト
     public GameObject[] QuestionObjectNo;
-    //プレイヤーストップ
     private bool playerstop;
     private Game_Manager Game_Manager;
-    //各ステージのカメラ位置
     private float[] cameraposition;
-    //クエスチョン選択用ナンバー
     private int QuestionNo;
-    //クエスチョンボードが出ているかチェック
     private bool QuestionopenChack = false;
-    //現在のカメラ位置
     private float cameraposY;
-    //クエスチョンボード接触判定
     private bool question_openCheck;
     private Question_board_Check Question_board_Check;
     //オーディオ

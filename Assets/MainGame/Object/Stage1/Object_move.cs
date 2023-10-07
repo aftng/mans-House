@@ -7,11 +7,10 @@ using UnityEngine.UIElements;
 public class Object_move : MonoBehaviour
 {
     //他のスクリプト取得
-    public UpChack UpChack;
-    public DownChack DownChack;
-    public RigthChack RigthChack;
-    public LeftChack LeftChack;
-
+    private UpChack UpChack;
+    private DownChack DownChack;
+    private RigthChack RigthChack;
+    private LeftChack LeftChack;
     public Player_Chack Player_Chack;
     private First_Stage_maneger First_Stage;
     private Player_grasp Player_grasp;
@@ -53,6 +52,10 @@ public class Object_move : MonoBehaviour
         this.First_Stage = FindObjectOfType<First_Stage_maneger>();
         this.Player_grasp = FindObjectOfType<Player_grasp>();
         this.player = FindObjectOfType<Player>();
+        this.UpChack = FindObjectOfType<UpChack>();
+        this.DownChack = FindObjectOfType<DownChack>();
+        this.RigthChack = FindObjectOfType<RigthChack>();
+        this.LeftChack = FindObjectOfType<LeftChack>();
     }
 
     // Update is called once per frame

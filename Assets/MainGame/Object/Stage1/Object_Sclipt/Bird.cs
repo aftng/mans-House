@@ -6,14 +6,18 @@ public class Bird : MonoBehaviour
 {
     public Object_rotate Object_rotate;
     //オブジェクト回転
-    public bool direction = false;
     private int Objectrotate;
     private int Objectrotatecorrect = 0;
-   
+    private bool direction = false;
+    public bool Direction
+    {
+        get { return direction; }
+    }
+
     void Update()
     {
         //他のスクリプトから変数取得
-         Objectrotate = Object_rotate.objectrotate;
+         Objectrotate = Object_rotate.Objectrotate;
 
         //オブジェクト正判定
         if (Objectrotate == Objectrotatecorrect)

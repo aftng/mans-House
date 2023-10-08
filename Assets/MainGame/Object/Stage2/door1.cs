@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door1 : MonoBehaviour
+public class Door1 : MonoBehaviour
 {
     public GameObject player;
     public GameObject obj;
     public GameObject Clearobj;
-    public Fade_Out Fade;
+    public Fade_Out Fade_Out;
     private Second_Stage_Gamemaneger Second_Stage_Gamemaneger;
     private bool stageChange = false;
     public bool StageChange
@@ -17,7 +17,8 @@ public class door1 : MonoBehaviour
     private bool ClearChack = false;
     void Start()
     {
-        this.Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
+        Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();       
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
     }
 
     void Update()
@@ -26,7 +27,7 @@ public class door1 : MonoBehaviour
         if (stageChange)
         {
             stageChange = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(TestCoroutine());
         }
     }

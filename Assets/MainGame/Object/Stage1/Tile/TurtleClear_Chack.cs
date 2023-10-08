@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class TurtleClear_Chack : MonoBehaviour
 {
-    public Turtle Turtle;
+    private Turtle Turtle;
     public GameObject Obj;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
-    public bool TurtleClearChack = false;
+    private bool turtleClearChack = false;
+    public bool TurtleClearChack
+    {
+        get { return turtleClearChack; }
+    }
+    void Start()
+    {
+        this.Turtle = FindObjectOfType<Turtle>();
+    }
     void Update()
     {
-        objectdirection = Turtle.direction;
+        objectdirection = Turtle.Direction;
         if (  objectdirection && touchChack)
         {
-            TurtleClearChack = true;
+            turtleClearChack = true;
         }
         else
         {
-            TurtleClearChack = false;
+            turtleClearChack = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

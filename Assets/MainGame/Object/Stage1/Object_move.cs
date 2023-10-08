@@ -49,13 +49,13 @@ public class Object_move : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        this.First_Stage = FindObjectOfType<First_Stage_maneger>();
-        this.Player_grasp = FindObjectOfType<Player_grasp>();
-        this.player = FindObjectOfType<Player>();
-        this.UpChack = FindObjectOfType<UpChack>();
-        this.DownChack = FindObjectOfType<DownChack>();
-        this.RigthChack = FindObjectOfType<RigthChack>();
-        this.LeftChack = FindObjectOfType<LeftChack>();
+        First_Stage = FindObjectOfType<First_Stage_maneger>();
+        Player_grasp = FindObjectOfType<Player_grasp>();
+        player = FindObjectOfType<Player>();
+        UpChack = FindObjectOfType<UpChack>();
+        DownChack = FindObjectOfType<DownChack>();
+        RigthChack = FindObjectOfType<RigthChack>();
+        LeftChack = FindObjectOfType<LeftChack>();
     }
 
     // Update is called once per frame

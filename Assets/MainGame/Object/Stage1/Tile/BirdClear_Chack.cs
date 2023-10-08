@@ -5,21 +5,29 @@ using UnityEngine;
 
 public class BirdClear_Chack : MonoBehaviour
 {
-    public Bird Bird;
+    private Bird Bird;
     public GameObject Obj;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
-    public bool BirdCrear = false;
+    private bool birdCrearChack = false;
+    public bool BirdClearChack
+    {
+        get { return birdCrearChack; }
+    }
+    void Start()
+    {
+        this.Bird = FindObjectOfType<Bird>();
+    }
     void Update()
     {
-        objectdirection = Bird.direction;
+        objectdirection = Bird.Direction;
         if (objectdirection && touchChack) 
         {
-            BirdCrear = true;
+            birdCrearChack = true;
         }
         else
         {
-            BirdCrear = false;
+            birdCrearChack = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

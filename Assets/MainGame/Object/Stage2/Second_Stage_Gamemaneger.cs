@@ -5,21 +5,21 @@ using UnityEngine;
 public class Second_Stage_Gamemaneger : MonoBehaviour
 {
     //他のスクリプト取得
-    private door1 door0;
-    private door2 door1;
-    private door3 door2;
-    private door4 door3;
-    private door5 door4;
-    private door6 door5;
+    private Door1 door0;
+    private Door2 door1;
+    private Door3 door2;
+    private Door4 door3;
+    private Door5 door4;
+    private Door6 door5;
     private SecondStage_mirror SecondStage_mirror;
 
-    private bool door0_flag = false;
-    private bool door1_flag = false;
-    private bool door2_flag = false;
-    private bool door3_flag = false;
-    private bool door4_flag = false;
-    private bool door5_flag = false;
-    private bool Stage2_mirror_flag = false;
+    private bool door0_flag;
+    private bool door1_flag;
+    private bool door2_flag;
+    private bool door3_flag;
+    private bool door4_flag;
+    private bool door5_flag;
+    private bool Stage2_mirror_flag;
     public GameObject ThirdStage_Object;
 
     private bool clearChack = false;
@@ -46,13 +46,13 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.door0 = FindObjectOfType<door1>();
-        this.door1 = FindObjectOfType<door2>();
-        this.door2 = FindObjectOfType<door3>();
-        this.door3 = FindObjectOfType<door4>();
-        this.door4 = FindObjectOfType<door5>();
-        this.door5 = FindObjectOfType<door6>();
-        this.SecondStage_mirror = FindObjectOfType<SecondStage_mirror>();
+        door0 = FindObjectOfType<Door1>();
+        door1 = FindObjectOfType<Door2>();
+        door2 = FindObjectOfType<Door3>();
+        door3 = FindObjectOfType<Door4>();
+        door4 = FindObjectOfType<Door5>();
+        door5 = FindObjectOfType<Door6>();
+        SecondStage_mirror = FindObjectOfType<SecondStage_mirror>();
         audioSource = GetComponent<AudioSource>();
     }
 

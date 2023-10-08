@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class HorseClear_Chack : MonoBehaviour
 {
-    public Horse Horse;
+    private Horse Horse;
     public GameObject Obj;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
-    public bool HorseClearChack = false;
+    private bool horseClearChack = false;
+    public bool HorseClearChack
+    {
+        get { return horseClearChack; }
+    }
+    void Start()
+    {
+        this.Horse = FindObjectOfType<Horse>();
+    }
     void Update()
     {
-        objectdirection = Horse.direction;
+        objectdirection = Horse.Direction;
         if (objectdirection && touchChack)
         {
-            HorseClearChack = true;
+            horseClearChack = true;
         }
         else
         {
-            HorseClearChack = false;
+            horseClearChack = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

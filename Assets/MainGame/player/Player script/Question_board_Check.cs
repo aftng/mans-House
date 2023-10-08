@@ -18,7 +18,7 @@ public class Question_board_Check : MonoBehaviour
     }
     void Start()
     {
-        this.Player_grasp = FindObjectOfType<Player_grasp>();
+        Player_grasp = FindObjectOfType<Player_grasp>();
     }
     void Update()
     {

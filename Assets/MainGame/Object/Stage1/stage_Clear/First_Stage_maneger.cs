@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class First_Stage_maneger : MonoBehaviour
 {
-    public BirdClear_Chack Bird;
-    public dogClear_Chack Dog;
-    public ghostClear_Chack Ghost;
-    public HorseClear_Chack Horse;
-    public TurtleClear_Chack Turtle;
-    public masked_ManClear_Chack masked_Man;
+    private BirdClear_Chack Bird;
+    private DogClear_Chack Dog;
+    private GhostClear_Chack Ghost;
+    private HorseClear_Chack Horse;
+    private TurtleClear_Chack Turtle;
+    private Masked_ManClear_Chack Masked_Man;
     public GameObject wall;
     private bool stageClear = false;
     private bool BirdClear;
@@ -30,14 +30,20 @@ public class First_Stage_maneger : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Bird = FindObjectOfType<BirdClear_Chack>();
+        Dog = FindObjectOfType<DogClear_Chack>();
+        Ghost = FindObjectOfType<GhostClear_Chack>();
+        Horse = FindObjectOfType<HorseClear_Chack>();
+        Turtle = FindObjectOfType<TurtleClear_Chack>();
+        Masked_Man = FindObjectOfType<Masked_ManClear_Chack>();
     }
     void Update()
     {
-        BirdClear = Bird.BirdCrear;
+        BirdClear = Bird.BirdClearChack;
         DogClear = Dog.DogClearChack;
         GhostClear = Ghost.GhostClearChack;
         HorseClear = Horse.HorseClearChack;
-        masked_ManClear = masked_Man.masked_ManClearChack;
+        masked_ManClear = Masked_Man.Masked_ManClearChack;
         TurtleClear = Turtle.TurtleClearChack;
 
         if (BirdClear && DogClear && GhostClear && HorseClear

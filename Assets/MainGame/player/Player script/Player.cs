@@ -19,13 +19,13 @@ public class Player : MonoBehaviour
     private Player_grasp Player_grasp;
 
     //上下左右の接触判定
-    private bool isUpChack = false;
-    private bool isDownChack = false;
-    private bool isRigthChack = false;
-    private bool isLeftChack = false;
+    private bool isUpChack;
+    private bool isDownChack;
+    private bool isRigthChack;
+    private bool isLeftChack;
 
     //プレイヤーストップ
-    private bool playerstop;
+    private bool playerstop = false;
 
     //player移動
     [SerializeField]
@@ -60,9 +60,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        this.Player_grasp = FindObjectOfType<Player_grasp>();
-        this.Game_Manager = FindObjectOfType<Game_Manager>();
-        this.Object_move = FindObjectOfType<Object_move>(); 
+        Player_grasp = FindObjectOfType<Player_grasp>();
+        Game_Manager = FindObjectOfType<Game_Manager>();
+        Object_move = FindObjectOfType<Object_move>(); 
         player_speed = moveSpeed;
         Objectspeed = Object_move.ObjectSpeed;
     }

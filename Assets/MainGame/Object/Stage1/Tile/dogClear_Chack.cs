@@ -2,25 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dogClear_Chack : MonoBehaviour
+public class DogClear_Chack : MonoBehaviour
 {
-    public dog dog;
+    private Dog Dog;
     public GameObject Obj;
-    public bool DogClearChack = false;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
+    private bool dogClearChack = false;
+    public bool DogClearChack
+    {
+        get { return dogClearChack; }
+    }
+    void Start()
+    {
+        this.Dog = FindObjectOfType<Dog>();
+    }
     void Update()
     {
-        objectdirection = dog.direction;
+        objectdirection = Dog.Direction;
         if (objectdirection)
         {
             if (objectdirection && touchChack)
             {
-                DogClearChack = true;
+                dogClearChack = true;
             }
             else
             {
-                DogClearChack = false;
+                dogClearChack = false;
             }
         }
     }

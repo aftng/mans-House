@@ -10,10 +10,10 @@ public class Player_grasp : MonoBehaviour
     public RigthChack RigthChack;
     public LeftChack LeftChack;
 
-    private bool isUpChack = false;
-    private bool isDownChack = false;
-    private bool isRigthChack = false;
-    private bool isLeftChack = false;
+    private bool isUpChack;
+    private bool isDownChack;
+    private bool isRigthChack;
+    private bool isLeftChack;
 
     private bool PushChack = false;
     public bool Push

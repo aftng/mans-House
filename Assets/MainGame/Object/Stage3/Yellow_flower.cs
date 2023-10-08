@@ -29,9 +29,9 @@ public class Yellow_flower : MonoBehaviour
     private int yellow_flowerClearrotate = 6;
     void Start()
     {
-        this.Player_grasp = FindObjectOfType<Player_grasp>();
-        this.third_Stage_Gamemanege = FindObjectOfType<Third_Stage_Gamemaneger>();
-        this.Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
+        Player_grasp = FindObjectOfType<Player_grasp>();
+        third_Stage_Gamemanege = FindObjectOfType<Third_Stage_Gamemaneger>();
+        Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
         soundorder = Second_Stage_Gamemaneger.Orderdoor[3];
     }
     void Update()

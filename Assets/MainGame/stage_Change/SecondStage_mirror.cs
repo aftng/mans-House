@@ -7,7 +7,7 @@ public class SecondStage_mirror : MonoBehaviour
     public GameObject player;
     public GameObject cameraMan;
     //フェードアウト
-    public Fade_Out Fade;
+    private Fade_Out Fade_Out;
     //プレイヤー移動位置
     private float Playerposition = 29.4f;
     //ステージチェンジチェック
@@ -22,7 +22,8 @@ public class SecondStage_mirror : MonoBehaviour
     private float cameraposition;
     void Start()
     {
-        this.Game_Manager = FindObjectOfType<Game_Manager>();
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        Game_Manager = FindObjectOfType<Game_Manager>();
         cameraposition = Game_Manager.Cameraposition[1];
     }
     void Update()
@@ -30,7 +31,7 @@ public class SecondStage_mirror : MonoBehaviour
         if (changeCheck)
         {
             changeCheck = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(StageChange());
         }
     }

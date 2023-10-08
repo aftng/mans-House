@@ -31,9 +31,9 @@ public class Red_flower : MonoBehaviour
     private int red_flowerClearrotate = 2;
     void Start()
     {
-        this.Player_grasp = FindObjectOfType<Player_grasp>();
-        this.third_Stage_Gamemanege = FindObjectOfType<Third_Stage_Gamemaneger>();
-        this.Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
+        Player_grasp = FindObjectOfType<Player_grasp>();
+        third_Stage_Gamemanege = FindObjectOfType<Third_Stage_Gamemaneger>();
+        Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
         soundorder = Second_Stage_Gamemaneger.Orderdoor[0];
         soundordersecond = Second_Stage_Gamemaneger.Orderdoor[6];
     }

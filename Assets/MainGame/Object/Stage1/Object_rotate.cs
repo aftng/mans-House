@@ -8,7 +8,11 @@ public class Object_rotate : MonoBehaviour
     private First_Stage_maneger First_Stage;
     private Player_rotate Player_rotate;
     //オブジェクト回転
-    public int objectrotate = 0;
+    private int objectrotate = 0;
+    public int Objectrotate
+    {
+        get { return objectrotate; }
+    }
     //オブジェクト回転絵取得
     [SerializeField]
     Sprite[] objectSprite;
@@ -32,8 +36,8 @@ public class Object_rotate : MonoBehaviour
     void Start()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
-        this.First_Stage = FindObjectOfType<First_Stage_maneger>();
-        this.Player_rotate = FindObjectOfType<Player_rotate>();
+        First_Stage = FindObjectOfType<First_Stage_maneger>();
+        Player_rotate = FindObjectOfType<Player_rotate>();
         sr.sprite = objectSprite[0];
     }
 

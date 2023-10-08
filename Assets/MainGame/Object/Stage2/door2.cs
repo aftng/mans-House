@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door2 : MonoBehaviour
+public class Door2 : MonoBehaviour
 {
     public GameObject player;
     public GameObject obj;
-    public Fade_Out Fade;
+    private Fade_Out Fade_Out;
     private bool stageChange = false;
     public bool StageChange
     {
         get { return stageChange; }
+    }
+    void Start()
+    {
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
     }
     private void Update()
     {
         if (stageChange)
         {
             stageChange = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(TestCoroutine());
         }
     }

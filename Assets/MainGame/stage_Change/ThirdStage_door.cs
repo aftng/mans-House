@@ -8,7 +8,7 @@ public class ThirdStage_door : MonoBehaviour
     public GameObject player;
     public GameObject cameraMan;
     //フェードアウト
-    public Fade_Out Fade;
+    private Fade_Out Fade_Out;
     //プレイヤー移動位置
     private float Playerposition = 4.0f;
     //ステージチェンジチェック
@@ -18,7 +18,8 @@ public class ThirdStage_door : MonoBehaviour
     private float cameraposition;
     void Start()
     {
-        this.Game_Manager = FindObjectOfType<Game_Manager>();
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        Game_Manager = FindObjectOfType<Game_Manager>();
         cameraposition = Game_Manager.Cameraposition[0];
     }
     void Update()
@@ -26,7 +27,7 @@ public class ThirdStage_door : MonoBehaviour
         if (stageChange)
         {
             stageChange = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(StageChange());
         }
     }

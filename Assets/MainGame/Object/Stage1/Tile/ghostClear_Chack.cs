@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ghostClear_Chack : MonoBehaviour
+public class GhostClear_Chack : MonoBehaviour
 {
-    public ghost ghost;
+    private Ghost Ghost;
     public GameObject Obj;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
-    public bool GhostClearChack = false;
-
+    private bool ghostClearChack = false;
+    public bool GhostClearChack
+    {
+        get { return ghostClearChack; }
+    }
+    void Start()
+    {
+        this.Ghost = FindObjectOfType<Ghost>();
+    }
+    
     void Update()
     {
-        objectdirection = ghost.direction;
+        objectdirection = Ghost.Direction;
         if (objectdirection && touchChack)
         {
-            GhostClearChack = true;
+            ghostClearChack = true;
         }
         else
         {
-            GhostClearChack = false;
+            ghostClearChack = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

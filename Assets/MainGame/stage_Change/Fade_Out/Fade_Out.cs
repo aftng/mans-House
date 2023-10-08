@@ -6,7 +6,7 @@ using UnityEngine.LowLevel;
 public class Fade_Out : MonoBehaviour
 {
     private Animator animator;
-    private bool playerstop;
+    private bool playerstop = false;
     //アニメーション時間
     private float AnimatorTime = 2.5f;
     private Game_Manager Game_Manager;
@@ -14,7 +14,7 @@ public class Fade_Out : MonoBehaviour
     void Start()
     {
          animator = GetComponent<Animator>();
-        this.Game_Manager = FindObjectOfType<Game_Manager>();  
+        Game_Manager = FindObjectOfType<Game_Manager>();  
     }
     public void Fade_out()
     {

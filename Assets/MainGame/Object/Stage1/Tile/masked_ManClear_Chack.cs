@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class masked_ManClear_Chack : MonoBehaviour
+public class Masked_ManClear_Chack : MonoBehaviour
 {
-    public masked_Man maskedMan;
+    private Masked_Man MaskedMan;
     public GameObject Obj;
-    private bool objectdirection = false;
+    private bool objectdirection;
     private bool touchChack = false;
-    public bool masked_ManClearChack = false;
- 
+    private bool masked_ManClearChack = false;
+    public bool Masked_ManClearChack
+    {
+        get { return masked_ManClearChack; }
+    }
+    void Start()
+    {
+        this.MaskedMan = FindObjectOfType<Masked_Man>();
+    }
     void Update()
     {
-        objectdirection = maskedMan.direction;
+        objectdirection = MaskedMan.Direction;
        
         if (touchChack && objectdirection)
         {

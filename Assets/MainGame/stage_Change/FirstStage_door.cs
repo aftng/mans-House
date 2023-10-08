@@ -8,7 +8,7 @@ public class FirstStage_door : MonoBehaviour
     public GameObject player;
     public GameObject cameraMan;
     //フェードアウト
-    public Fade_Out Fade;
+    private Fade_Out Fade_Out;
 
     //プレイヤー移動位置
     private float Playerposition = 21.5f;
@@ -22,8 +22,9 @@ public class FirstStage_door : MonoBehaviour
     private float cameraposition;
     private void Start()
     {
-        this.First_Stage = FindObjectOfType<First_Stage_maneger>();
-        this.Game_Manager = FindObjectOfType<Game_Manager>();
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        First_Stage = FindObjectOfType<First_Stage_maneger>();
+        Game_Manager = FindObjectOfType<Game_Manager>();
         cameraposition = Game_Manager.Cameraposition[1];
     }
     void Update()
@@ -33,7 +34,7 @@ public class FirstStage_door : MonoBehaviour
         if (stageChange && Clear)
         {        
             stageChange = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(StageChange());
         }
     }

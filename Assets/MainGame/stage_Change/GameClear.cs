@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameClear : MonoBehaviour
 {
     //フェードアウト
-    public Fade_Out Fade;
+    private Fade_Out Fade_Out;
     //ステージクリアチェック
     private bool stageChange = false;
+    void Start()
+    {
+        Fade_Out = FindAnyObjectByType<Fade_Out>();
+    }
     void Update()
     {
         if (stageChange)
         {
             stageChange = false;
-            Fade.Fade_out();
+            Fade_Out.Fade_out();
             StartCoroutine(StageChange());
         }
     }

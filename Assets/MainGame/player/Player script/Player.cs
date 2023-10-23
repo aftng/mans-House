@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     private Game_Manager Game_Manager;
     private Object_move Object_move;
-    private Player_grasp Player_grasp;
+    private PlayerAction PlayerAction;
 
     //上下左右の接触判定
     private bool isUpChack;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
    private AudioClip clip;
 
     //プレイヤー掴み判定
-    private bool graspChack;
+    private bool HoldChack;
 
     //コンポーネント取得
     private Rigidbody2D rb;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        Player_grasp = FindObjectOfType<Player_grasp>();
+        PlayerAction = FindObjectOfType<PlayerAction>();
         Game_Manager = FindObjectOfType<Game_Manager>();
         Object_move = FindObjectOfType<Object_move>(); 
         player_speed = moveSpeed;
@@ -68,7 +68,6 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
         isUpChack = UpChack.IsUpChack();
         isRigthChack = RigthChack.IsRigthChack();
         isLeftChack = LeftChack.IsLeftChack();
@@ -77,7 +76,7 @@ public class Player : MonoBehaviour
         playermove.x = Input.GetAxisRaw("Horizontal");
         playermove.y = Input.GetAxisRaw("Vertical");
 
-        graspChack = Player_grasp.Hold;
+        HoldChack = PlayerAction.HoldChack();
 
         playerstop = Game_Manager.PlayerStop;
         PlayerMove();  
@@ -105,12 +104,6 @@ public class Player : MonoBehaviour
     }
     private void PlayerMove()
     {
-        if (!graspChack) 
-        {
-            player_speed = moveSpeed;
-            return;
-        }
-
         if (isUpChack || isDownChack)
         {
             if (playermove.y != 0)
@@ -148,13 +141,13 @@ public class Player : MonoBehaviour
 
         if (Mathf.Abs(rb.velocity.x) > 0.5f)
         {
-            if (graspChack && isLeftChack)
+            if (HoldChack && isLeftChack)
             {
                 AnimateMove.x = -MoveStop;
                 lastMove.x = AnimateMove.x;
                 lastMove.y = 0;
             }
-            else if (graspChack && isRigthChack)
+            else if (HoldChack && isRigthChack)
             {
                 AnimateMove.x = MoveStop;
                 lastMove.x = AnimateMove.x;
@@ -169,13 +162,13 @@ public class Player : MonoBehaviour
         }
         else if(Mathf.Abs(rb.velocity.y) > 0.5f)
         {
-            if (graspChack && isUpChack)
+            if (HoldChack && isUpChack)
             {
                 AnimateMove.y = MoveStop;
                 lastMove.y = AnimateMove.y;
                 lastMove.x = 0;
             }
-            else if (graspChack && isDownChack)
+            else if (HoldChack && isDownChack)
             {
                 AnimateMove.y = -MoveStop;
                 lastMove.y = AnimateMove.y;

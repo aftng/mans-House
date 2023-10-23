@@ -181,8 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e001ac669a212e46923f926a00a41a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Chack: {fileID: 973623337762037644}
-  objectrotate: 0
+  PlayerChack: {fileID: 0}
   objectSprite: []
 --- !u!1 &6740235493999101958
 GameObject:
@@ -234,11 +233,17 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -253,6 +258,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -281,11 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f236ed4f4e771d41aacc31eef0b439c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpChack: {fileID: 0}
-  DownChack: {fileID: 0}
-  RigthChack: {fileID: 0}
-  LeftChack: {fileID: 0}
-  Player_Chack: {fileID: 0}
+  PlayerChack: {fileID: 0}
   clip: {fileID: 8300000, guid: f5633b04fc25319499f033495bca832a, type: 3}
 --- !u!114 &973623337762037644
 MonoBehaviour:
@@ -299,11 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa68725e73a1b746adbf55d457cad68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChack1: {fileID: 0}
-  playerChack2: {fileID: 0}
-  playerChack3: {fileID: 0}
-  playerChack4: {fileID: 0}
-  playerChack5: {fileID: 0}
+  playerChack: []
   PlayerChack: 0
 --- !u!82 &6710925628750479104
 AudioSource:

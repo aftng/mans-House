@@ -5,10 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
-  - Obj
   - Question
   - Tile
   - animal
+  - Undefined
+  - ChangeMap
+  - arrow
   layers:
   - Default
   - TransparentFX

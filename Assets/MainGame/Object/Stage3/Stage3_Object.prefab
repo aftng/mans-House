@@ -42,7 +42,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081749720953, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -107,17 +107,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: stone
+      value: JewelryMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5110223782997158360}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!1 &5910894053781211631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 15765552243129620}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894053781211638
+--- !u!114 &5110223782997158360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,11 +131,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5910894053781211631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47292407a11f79479a586679c4d7785, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db6dde397643c94abc31b916322b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 5910894053781211639}
   Player_Chack: {fileID: 5910894053781211632}
+  correctorder: 5
+  ObjectrotateChack: 4
 --- !u!114 &5910894053781211632 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5926654082293609700, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -163,7 +170,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081749720953, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -240,10 +247,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: redflower
+      value: Goddess_StatueMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6377114984564074733}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!114 &15765552296078530 stripped
 MonoBehaviour:
@@ -277,7 +289,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 5910894053333997606}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894053333997611
+--- !u!114 &6377114984564074733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,12 +303,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 15765552296078533}
   Player_Chack: {fileID: 15765552296078530}
+  correctorder: 1
+  secondcorrectorder: 7
+  ObjectrotateChack: 2
 --- !u!1001 &5910894053838306024
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081749720953, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -373,10 +388,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: bone
+      value: BoneMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1453615344728276618}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!114 &15765551783251467 stripped
 MonoBehaviour:
@@ -410,7 +430,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 5910894053838306024}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894053838306029
+--- !u!114 &1453615344728276618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,17 +439,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 15765551783251475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5cc8e98c65173c4599be93d954eed7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db6dde397643c94abc31b916322b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 15765551783251467}
   Player_Chack: {fileID: 15765551783251468}
+  correctorder: 4
+  ObjectrotateChack: 1
 --- !u!1001 &5910894053984589671
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081698345468, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -514,10 +536,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: woodenBox
+      value: BarroomMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 569376356533369668}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!4 &15765551905432450 stripped
 Transform:
@@ -551,7 +578,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 5910894053984589671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894055058920901
+--- !u!114 &569376356533369668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -560,17 +587,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 15765551905432476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3acf33d39f7801541acc9a9f3f46e396, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db6dde397643c94abc31b916322b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 15765551905432452}
   Player_Chack: {fileID: 15765551905432451}
+  correctorder: 2
+  ObjectrotateChack: 1
 --- !u!1001 &5910894054697394714
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081749720953, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -647,17 +676,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: tomb
+      value: GraveMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2193662452355675529}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!1 &15765553139308257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 5910894054697394714}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894054465219252
+--- !u!114 &2193662452355675529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,11 +700,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 15765553139308257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 086a642966411f04792e9f38498b01cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db6dde397643c94abc31b916322b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 15765553139308281}
   Player_Chack: {fileID: 15765553139308286}
+  correctorder: 6
+  ObjectrotateChack: 5
 --- !u!114 &15765553139308281 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5926654082293609699, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -703,7 +739,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5910894054550314139}
     m_Modifications:
     - target: {fileID: 5926654081749720953, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
@@ -784,17 +820,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
       propertyPath: m_Name
-      value: yellowflower
+      value: ForestMap_Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4132689096509113197}
   m_SourcePrefab: {fileID: 100100000, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
 --- !u!1 &15765552794074785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5926654082293609723, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}
   m_PrefabInstance: {fileID: 5910894055386040922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910894054472990030
+--- !u!114 &4132689096509113197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -803,11 +844,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 15765552794074785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a290741d156a6b43a98a6a5f8f276a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db6dde397643c94abc31b916322b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Object_Sound_rotate: {fileID: 15765552794074809}
   Player_Chack: {fileID: 15765552794074814}
+  correctorder: 3
+  ObjectrotateChack: 6
 --- !u!114 &15765552794074809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5926654082293609699, guid: 2a6991db222b5f34fa250f2cdfc0cdad, type: 3}

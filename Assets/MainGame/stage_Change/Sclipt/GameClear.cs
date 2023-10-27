@@ -9,7 +9,7 @@ public class GameClear : MonoBehaviour
     private Fade_Out Fade_Out;
     void Start()
     {
-        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        Fade_Out = FindObjectOfType<Fade_Out>();
     }
     IEnumerator StageChange()
     {

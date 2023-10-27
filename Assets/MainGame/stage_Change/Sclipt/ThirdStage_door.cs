@@ -16,7 +16,7 @@ public class ThirdStage_door : MonoBehaviour
     private float cameraposition;
     void Start()
     {
-        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        Fade_Out = FindObjectOfType<Fade_Out>();
         Game_Manager = FindObjectOfType<Game_Manager>();
         cameraposition = Game_Manager.Cameraposition[0];
     }

@@ -24,7 +24,7 @@ public class Goddess_Statue_Door : MonoBehaviour
     void Start()
     {
         Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();       
-        Fade_Out = FindAnyObjectByType<Fade_Out>();
+        Fade_Out = FindObjectOfType<Fade_Out>();
     }
 
     IEnumerator TestCoroutine()

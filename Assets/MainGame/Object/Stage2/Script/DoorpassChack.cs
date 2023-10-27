@@ -17,8 +17,8 @@ public class DoorpassChack : MonoBehaviour
 
     void Start()
     {
-        Fade_Out = FindAnyObjectByType<Fade_Out>();
-        Second_Stage_Gamemaneger = FindAnyObjectByType<Second_Stage_Gamemaneger>();
+        Fade_Out = FindObjectOfType<Fade_Out>();
+        Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
     }
 
     IEnumerator TestCoroutine()

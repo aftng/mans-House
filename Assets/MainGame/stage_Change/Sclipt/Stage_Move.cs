@@ -1,28 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class FirstStage_door : MonoBehaviour
+public class Stage_Move : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public GameObject cameraMan;
-    //フェードアウト
-    private Fade_Out Fade_Out;
+
+    public Fade_Out Fade_Out;
+    public Game_Manager Game_Manager;
 
     //プレイヤー移動位置
-    private float Playerposition = 21.5f;
-
+    [SerializeField]
+    private float Playerposition;
+    //カメラの配列番号
+    [SerializeField]
+    private int CameraMoveNo;
     //カメラ移動位置
-    private Game_Manager Game_Manager;
     private float cameraposition;
-    private void Start()
+    void Start()
     {
-        Fade_Out = FindObjectOfType<Fade_Out>();
-        Game_Manager = FindObjectOfType<Game_Manager>();
-        cameraposition = Game_Manager.Cameraposition[1];
+        cameraposition = Game_Manager.Cameraposition[CameraMoveNo];
     }
-
     IEnumerator StageChange()
     {
         //フェードアウトするまで1秒待つ
@@ -32,9 +30,10 @@ public class FirstStage_door : MonoBehaviour
             Vector3 PlayerPos = player.transform.position;
             player.transform.position = new Vector3(
                 PlayerPos.x, Playerposition, PlayerPos.z);
+            player = null;
         }
         //カメラ座標変更
-        {    
+        {
             Vector3 CamerarPos = cameraMan.transform.position;
             cameraMan.transform.position = new Vector3(
                CamerarPos.x, cameraposition, CamerarPos.z);
@@ -42,11 +41,11 @@ public class FirstStage_door : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject.tag == "Player")
         {
+            player = collision.gameObject;
             Fade_Out.Fade_out();
             StartCoroutine(StageChange());
         }
     }
 }
-

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Third_Stage_Gamemaneger : MonoBehaviour
@@ -33,6 +32,7 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
         {
             ordercount = 1;
         }
+        Debug.Log(ordercount);
     }
 
     public void TwoOrdertChack(int OrderNo, int OrderNo_second)
@@ -48,6 +48,7 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
             ordercount = 1;
         }
         ClearChacks();
+        Debug.Log(ordercount);
     }
     public void ClearChacks()
     {

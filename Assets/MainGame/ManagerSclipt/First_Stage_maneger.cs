@@ -1,28 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class First_Stage_maneger : MonoBehaviour
 {
-    private Bird Bird;
-    private Dog Dog;
-    private Ghost Ghost;
-    private Horse Horse;
-    private Turtle Turtle;
-    private Masked_Man Masked_Man;
-
+    [SerializeField]
+    private GameObject[] statue;
+    private ClarChack[] ClearChacks = new ClarChack[6];
+    private bool[] ObjectChack = new bool[6];
     public GameObject wall;
-    private bool stageClear = false;
-    private bool BirdClear;
-    private bool DogClear;
-    private bool GhostClear;
-    private bool HorseClear;
-    private bool masked_ManClear;
-    private bool TurtleClear;
     //クリアオーディオ
     private AudioSource audioSource;
     [SerializeField]
     AudioClip clip;
+    private bool stageClear = false;
     public bool FirststageClear
     {
         get { return stageClear; }
@@ -30,30 +21,29 @@ public class First_Stage_maneger : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        Bird = FindObjectOfType<Bird>();
-        Dog = FindObjectOfType<Dog>();
-        Ghost = FindObjectOfType<Ghost>();
-        Horse = FindObjectOfType<Horse>();
-        Turtle = FindObjectOfType<Turtle>();
-        Masked_Man = FindObjectOfType<Masked_Man>();
+        //配列オブジェクトのコンポーネント取得
+        for (int i = 0; i < statue.Length; ++i)
+        {
+            ClearChacks[i] = statue[i].GetComponent<ClarChack>();
+        }
     }
     void Update()
     {
         if (stageClear) { return; }
-        BirdClear = Bird.ObjectClearChack();
-        DogClear = Dog.ObjectClearChack();
-        GhostClear = Ghost.ObjectClearChack();
-        HorseClear = Horse.ObjectClearChack();
-        masked_ManClear = Masked_Man.ObjectClearChack();
-        TurtleClear = Turtle.ObjectClearChack();
         StageClearChack();
     }
 
     private void StageClearChack()
     {
-        if (BirdClear && DogClear && GhostClear && HorseClear
-           && masked_ManClear && TurtleClear)
+        //すべてのオブジェクトのクリアチェック
+        for (int i = 0; i < statue.Length; ++i)
         {
+            ObjectChack[i] = ClearChacks[i].ObjectClearChack();
+        }
+
+        //配列の中身がすべて同じでObjectClearChack[0]がTrueならクリア
+        if (ObjectChack.Distinct().Count() == 1　&& ObjectChack[0] == true)
+        {           
             StartCoroutine(ChackClear());
         }
     }
@@ -61,11 +51,10 @@ public class First_Stage_maneger : MonoBehaviour
     {
         //数秒待ってからクリアチェック
         yield return new WaitForSeconds(2);
-        if (BirdClear && DogClear && GhostClear && HorseClear
-          && masked_ManClear && TurtleClear && !stageClear)
-        {          
-                stageClear = true;
-                StartCoroutine(ClearOudio());            
+        if (ObjectChack.Distinct().Count() == 1 && ObjectChack[0] == true && stageClear== false)
+        {
+            stageClear = true;
+            StartCoroutine(ClearOudio());
         }
     }
     IEnumerator ClearOudio()

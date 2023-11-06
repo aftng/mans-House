@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorpassChack : MonoBehaviour
 {
-    public GameObject Player;
+    private GameObject Player;
     public GameObject MapObj;
-    private Fade_Out Fade_Out;
-    private Second_Stage_Gamemaneger Second_Stage_Gamemaneger;
+    public Fade_Out Fade_Out;
+    public Second_Stage_Gamemaneger Second_Stage_Gamemaneger;
 
     [SerializeField]
     private int correctorder;
@@ -15,18 +14,13 @@ public class DoorpassChack : MonoBehaviour
     [SerializeField]
     Vector2 PlayermovePos;
 
-    void Start()
-    {
-        Fade_Out = FindObjectOfType<Fade_Out>();
-        Second_Stage_Gamemaneger = FindObjectOfType<Second_Stage_Gamemaneger>();
-    }
-
     IEnumerator TestCoroutine()
     {
         yield return new WaitForSeconds(1);
         //プレイヤー座標変更
         {
             Player.transform.position = PlayermovePos;
+            Player = null;
         }
         Object_Destroy();
         Object_Instantiate();
@@ -55,8 +49,9 @@ public class DoorpassChack : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == Player)
+        if (collision.gameObject.tag == "Player")
         {
+            Player = collision.gameObject;
             Fade_Out.Fade_out();
             StartCoroutine(TestCoroutine());
             Second_Stage_Gamemaneger.OrderChack(correctorder);

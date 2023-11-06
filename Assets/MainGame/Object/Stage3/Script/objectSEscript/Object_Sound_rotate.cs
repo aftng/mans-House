@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Object_Sound_rotate : MonoBehaviour
 {
     //他のスクリプト
-    public Sound_Player_Chack Player_Chack;
     private PlayerAction PlayerAction;
     //プレイヤ接触判定
     private bool isplayer = false;
@@ -32,7 +29,6 @@ public class Object_Sound_rotate : MonoBehaviour
     }
     void Update()
     {
-        isplayer = Player_Chack.IsPlayerChack();
         rightkey = PlayerAction.RotateRightChack();
         leftkey = PlayerAction.RotateLeftChack();
         PushChack = PlayerAction.DecisionChack();
@@ -83,5 +79,20 @@ public class Object_Sound_rotate : MonoBehaviour
            audioSource.PlayOneShot(clip[soundrotate]);
         }
         return soundrotate;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isplayer = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isplayer = false;
+        }
     }
 }

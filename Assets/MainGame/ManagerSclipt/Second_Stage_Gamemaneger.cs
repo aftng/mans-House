@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Second_Stage_Gamemaneger : MonoBehaviour
 {   
     public GameObject ThirdStage_Object;
-
     private bool clearChack = false;
     public bool ClearChack
     {

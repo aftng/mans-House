@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gameguideright : MonoBehaviour
 {
-    private float nowPosi = 2;
+    private float nowPosi = 1;
 
     void Start()
     {

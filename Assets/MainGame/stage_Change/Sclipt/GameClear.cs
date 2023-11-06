@@ -1,16 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameClear : MonoBehaviour
 {
     //フェードアウト
-    private Fade_Out Fade_Out;
-    void Start()
-    {
-        Fade_Out = FindObjectOfType<Fade_Out>();
-    }
+    public Fade_Out Fade_Out;
     IEnumerator StageChange()
     {
         //フェードアウトするまで1.5秒待つ

@@ -1,155 +1,125 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.LowLevel;
-using UnityEngine.SceneManagement;
-using UnityEngine.Timeline;
 
 public class Player : MonoBehaviour
 {
-    //他のスクリプト取得
     public UpChack UpChack;
     public DownChack DownChack;
     public RigthChack RigthChack;
     public LeftChack LeftChack;
+    public PlayerAction PlayerAction;
+    public Game_Manager Game_Manager;
+    public First_Stage_maneger FirstStage;
+    public ObjectCarry ObjectCarry;
 
-    private Game_Manager Game_Manager;
-    private Object_move Object_move;
-    private PlayerAction PlayerAction;
-
-    //上下左右の接触判定
     private bool isUpChack;
     private bool isDownChack;
     private bool isRigthChack;
     private bool isLeftChack;
 
-    //プレイヤーストップ
-    private bool playerstop = false;
-
-    //player移動
     [SerializeField]
     private float moveSpeed;
+    [SerializeField]
+    private float Objectcarryspeed = 1;
+
+    //プレイヤーの現在スピード
     private float player_speed;
     private Vector2 playermove;
-    public Vector2 Playermove
-    {
-        get { return playermove; }
-    }
-    //オブジェクトスピード
-    private float Objectspeed;
 
-    //アニメーション
-    private Vector2 lastMove;
-
-    private Vector2 AnimateMove;
-    //オーディオ
-    [SerializeField]
-   private AudioClip clip;
-
-    //プレイヤー掴み判定
+    private bool playerstop = false;
     private bool HoldChack;
+
+    private Vector2 lastMove;
+    private Vector2 AnimateMove;
+
+    private GameObject CarryObject;
+
+    [SerializeField]
+    private AudioClip Playerclip;
 
     //コンポーネント取得
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Animator animator;
-   
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        PlayerAction = FindObjectOfType<PlayerAction>();
-        Game_Manager = FindObjectOfType<Game_Manager>();
-        Object_move = FindObjectOfType<Object_move>(); 
         player_speed = moveSpeed;
-        Objectspeed = Object_move.ObjectSpeed;
     }
     void Update()
     {
+        //他のスクリプト変数取得
         isUpChack = UpChack.IsUpChack();
         isRigthChack = RigthChack.IsRigthChack();
         isLeftChack = LeftChack.IsLeftChack();
         isDownChack = DownChack.IsDownChack();
-
+        HoldChack = PlayerAction.HoldChack();
+        playerstop = Game_Manager.PlayerStop;
+        //移動入力
         playermove.x = Input.GetAxisRaw("Horizontal");
         playermove.y = Input.GetAxisRaw("Vertical");
 
-        HoldChack = PlayerAction.HoldChack();
-
-        playerstop = Game_Manager.PlayerStop;
-        PlayerMove();  
+        //斜め移動禁止
+        if (playermove.x != 0 && playermove.y != 0)
+        {
+            playermove = Vector2.zero;
+        }
+        MoveObjectsSpeed();
+        Animate();
+        PlayerSound();
     }
     void FixedUpdate()
     {
-        if (!playerstop)
-        {
-            //斜め移動禁止
-            if (playermove.x != 0 && playermove.y != 0)
-            {
-                playermove.x = 0;
-                playermove.y = 0;
-            }
-
-            rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
-            AnimateMove = rb.velocity;
-        }
-        else
+        if (playerstop)
         {
             rb.velocity = Vector2.zero;
+            return;
         }
-        PlayerFootstepSound();
-        Animate();
+        rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
+        AnimateMove = rb.velocity;
     }
-    private void PlayerMove()
+    private void MoveObjectsSpeed()
     {
-        if (isUpChack || isDownChack)
+        //オブジェクト移動時のスピード
+        if (CarryObject != null)
         {
-            if (playermove.y != 0)
+            if ( HoldChack && (isUpChack || isDownChack))
             {
-                player_speed = Objectspeed;
+                player_speed = Objectcarryspeed;
                 playermove.x = 0;
+                ObjectCarry.ObjectMove(playermove, player_speed);
             }
-            else
+            else if (HoldChack && (isRigthChack || isLeftChack))
             {
-                player_speed = moveSpeed;
-            }
-        }
-        else if (isRigthChack || isLeftChack)
-        {
-            if (playermove.x != 0)
-            {
-                player_speed = Objectspeed;
+                player_speed = Objectcarryspeed;
                 playermove.y = 0;
+                ObjectCarry.ObjectMove(playermove, player_speed);
             }
             else
             {
                 player_speed = moveSpeed;
+                ObjectCarry.ObjectMoveStop();
             }
-        }
-        else
-        {
-            player_speed = moveSpeed;
         }
     }
     private void Animate()
     {
-        //オブジェクトを掴んだ時にPlayerの向きを固定するための変数
-        //1か-1で向きを管理
-        float MoveStop = 1;
+        //オブジェクト移動時のPlayerの向きを固定するための変数を1か-1で向きを管理
+        float directionStop = 1;
 
         if (Mathf.Abs(rb.velocity.x) > 0.5f)
         {
             if (HoldChack && isLeftChack)
             {
-                AnimateMove.x = -MoveStop;
+                AnimateMove.x = -directionStop;
                 lastMove.x = AnimateMove.x;
                 lastMove.y = 0;
             }
             else if (HoldChack && isRigthChack)
             {
-                AnimateMove.x = MoveStop;
+                AnimateMove.x = directionStop;
                 lastMove.x = AnimateMove.x;
                 lastMove.y = 0;
             }
@@ -160,17 +130,17 @@ public class Player : MonoBehaviour
                 lastMove.y = 0;
             }
         }
-        else if(Mathf.Abs(rb.velocity.y) > 0.5f)
+        else if (Mathf.Abs(rb.velocity.y) > 0.5f)
         {
             if (HoldChack && isUpChack)
             {
-                AnimateMove.y = MoveStop;
+                AnimateMove.y = directionStop;
                 lastMove.y = AnimateMove.y;
                 lastMove.x = 0;
             }
             else if (HoldChack && isDownChack)
             {
-                AnimateMove.y = -MoveStop;
+                AnimateMove.y = -directionStop;
                 lastMove.y = AnimateMove.y;
                 lastMove.x = 0;
             }
@@ -180,22 +150,21 @@ public class Player : MonoBehaviour
                 lastMove.y = rb.velocity.y;
                 lastMove.x = 0;
             }
-        } 
-        
+        }
         animator.SetFloat("Dir_X", AnimateMove.x);
         animator.SetFloat("Dir_Y", AnimateMove.y);
         animator.SetFloat("LastMove_X", lastMove.x);
         animator.SetFloat("LastMove_Y", lastMove.y);
         animator.SetFloat("Input", rb.velocity.magnitude);
     }
-    private void PlayerFootstepSound()
+    private void PlayerSound()
     {
         //移動時のみサウンドを鳴らす
         if (rb.velocity.magnitude != 0)
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.PlayOneShot(clip);
+                audioSource.PlayOneShot(Playerclip);
             }
         }
         else
@@ -205,5 +174,24 @@ public class Player : MonoBehaviour
                 audioSource.Stop();
             }
         }
-    }    
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Object" && CarryObject == null)
+        {   //掴めるオブジェクトのコンポーネント取得
+            //ファーストステージをクリアするとオブジェクトは移動できない
+            if (FirstStage.FirststageClear) { return; }
+            CarryObject = collision.gameObject;
+            ObjectCarry.GetObject(CarryObject);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject == CarryObject)
+        {
+            //掴めるオブジェクトのコンポーネント破棄
+            ObjectCarry.OutObject();
+            CarryObject = null;
+        }
+    }
 }

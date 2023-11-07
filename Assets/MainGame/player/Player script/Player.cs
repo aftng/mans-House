@@ -89,13 +89,13 @@ public class Player : MonoBehaviour
             {
                 player_speed = Objectcarryspeed;
                 playermove.x = 0;
-                ObjectCarry.ObjectMove(playermove, player_speed);
+                ObjectCarry.Objectoperation(playermove, player_speed);
             }
             else if (HoldChack && (isRigthChack || isLeftChack))
             {
                 player_speed = Objectcarryspeed;
                 playermove.y = 0;
-                ObjectCarry.ObjectMove(playermove, player_speed);
+                ObjectCarry.Objectoperation(playermove, player_speed);
             }
             else
             {
@@ -106,22 +106,18 @@ public class Player : MonoBehaviour
     }
     private void Animate()
     {
-        //オブジェクト移動時のPlayerの向きを固定するための変数を1か-1で向きを管理
-        float directionStop = 1;
-
+        //オブジェクト移動時のPlayerの向きを固定する
         if (Mathf.Abs(rb.velocity.x) > 0.5f)
         {
             if (HoldChack && isLeftChack)
             {
-                AnimateMove.x = -directionStop;
+                AnimateMove = Vector2.left;
                 lastMove.x = AnimateMove.x;
-                lastMove.y = 0;
             }
             else if (HoldChack && isRigthChack)
             {
-                AnimateMove.x = directionStop;
+                AnimateMove = Vector2.right;
                 lastMove.x = AnimateMove.x;
-                lastMove.y = 0;
             }
             else
             {
@@ -134,15 +130,13 @@ public class Player : MonoBehaviour
         {
             if (HoldChack && isUpChack)
             {
-                AnimateMove.y = directionStop;
+                AnimateMove = Vector2.up; ;
                 lastMove.y = AnimateMove.y;
-                lastMove.x = 0;
             }
             else if (HoldChack && isDownChack)
             {
-                AnimateMove.y = -directionStop;
+                AnimateMove = Vector2.down;
                 lastMove.y = AnimateMove.y;
-                lastMove.x = 0;
             }
             else
             {
@@ -177,12 +171,15 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //掴めるオブジェクトのコンポーネント取得
         if (collision.gameObject.tag == "Object" && CarryObject == null)
-        {   //掴めるオブジェクトのコンポーネント取得
+        {
             //ファーストステージをクリアするとオブジェクトは移動できない
-            if (FirstStage.FirststageClear) { return; }
-            CarryObject = collision.gameObject;
-            ObjectCarry.GetObject(CarryObject);
+            if (!FirstStage.FirststageClear)
+            {
+                CarryObject = collision.gameObject;
+                ObjectCarry.GetObject(CarryObject);
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

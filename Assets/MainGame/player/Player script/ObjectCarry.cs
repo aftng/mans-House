@@ -11,10 +11,9 @@ public class ObjectCarry : MonoBehaviour
     //プレイヤからのキー入力
     private bool leftkey;
     private bool rightkey;
-    private bool HoldChack;
 
     private int ObjectrotateNo;
-    private Vector2 PlayerMove;
+    private Vector2 ObjectMove;
 
     [SerializeField]
     private AudioClip Objectclip;
@@ -27,15 +26,14 @@ public class ObjectCarry : MonoBehaviour
         //他のスクリプトから変数取得
         rightkey = PlayerAction.RotateRightChack();
         leftkey = PlayerAction.RotateLeftChack();
-        HoldChack = PlayerAction.HoldChack();
     }
-    public void ObjectMove(Vector2 ObjectMove, float ObjectSpeed)
+    public void Objectoperation(Vector2 PlayerMove, float ObjectSpeed)
     {
-        PlayerMove = ObjectMove * ObjectSpeed;
+        ObjectMove = PlayerMove* ObjectSpeed;
 
         //オブジェクトの移動       
         CarryObjectrb.bodyType = RigidbodyType2D.Dynamic;
-        CarryObjectrb.velocity = new Vector2(PlayerMove.x, PlayerMove.y);  
+        CarryObjectrb.velocity = new Vector2(ObjectMove.x, ObjectMove.y);  
         
         //オブジェクトの回転
         {

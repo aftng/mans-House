@@ -1,23 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class key_Font : MonoBehaviour
-{  
+{
+    public Title title;
     //フォント点滅時間
     [SerializeField] 
     private float _cycle = 1;
 
-    private Renderer Rd;
     private float _time;
+    private Image image;
     void Start()
     {
-        Rd = GetComponent<Renderer>();
+        image = GetComponent<Image>();
     }
     void Update()
-    {        
+    {       
+        //点滅
         _time += Time.deltaTime;
         var repeatValue = Mathf.Repeat(_time, _cycle);
-        Rd.enabled = repeatValue >= _cycle * 0.5f;
+        image.enabled = repeatValue >= _cycle * 0.5f;
+        if (title.BottanChack)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

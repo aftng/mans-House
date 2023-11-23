@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //他のスクリプト取得
     public UpChack UpChack;
     public DownChack DownChack;
     public RigthChack RigthChack;
     public LeftChack LeftChack;
     public PlayerAction PlayerAction;
-    public Game_Manager Game_Manager;
-    public First_Stage_maneger FirstStage;
+    public Gameprogress Gameprogress;
     public ObjectCarry ObjectCarry;
+    public Select_question Select_question;
 
+    //上下左右接触判定
     private bool isUpChack;
     private bool isDownChack;
     private bool isRigthChack;
@@ -27,20 +29,19 @@ public class Player : MonoBehaviour
 
     private bool playerstop = false;
     private bool HoldChack;
+    private bool question_openCheck;
 
+    //アニメーション制御
     private Vector2 lastMove;
     private Vector2 AnimateMove;
-
-    private GameObject CarryObject;
 
     [SerializeField]
     private AudioClip Playerclip;
 
-    //コンポーネント取得
+    //コンポーネント
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Animator animator;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -56,17 +57,19 @@ public class Player : MonoBehaviour
         isLeftChack = LeftChack.IsLeftChack();
         isDownChack = DownChack.IsDownChack();
         HoldChack = PlayerAction.HoldChack();
-        playerstop = Game_Manager.PlayerStop;
+        playerstop = Gameprogress.PlayerStop;
+
         //移動入力
         playermove.x = Input.GetAxisRaw("Horizontal");
         playermove.y = Input.GetAxisRaw("Vertical");
-
+        
         //斜め移動禁止
         if (playermove.x != 0 && playermove.y != 0)
         {
             playermove = Vector2.zero;
-        }
-        MoveObjectsSpeed();
+        }         
+        Objectsoperation();  
+        QuestionOpen();
         Animate();
         PlayerSound();
     }
@@ -80,11 +83,13 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
         AnimateMove = rb.velocity;
     }
-    private void MoveObjectsSpeed()
+    private void Objectsoperation()
     {
-        //オブジェクト移動時のスピード
-        if (CarryObject != null)
+        if (ObjectCarry.CarryObject != null)
         {
+            //オブジェクト回転
+            ObjectCarry.ObjectRotate();
+            //オブジェクト移動時のスピードとオブジェクト移動
             if ( HoldChack && (isUpChack || isDownChack))
             {
                 player_speed = Objectcarryspeed;
@@ -103,6 +108,10 @@ public class Player : MonoBehaviour
                 ObjectCarry.ObjectMoveStop();
             }
         }
+        else
+        {
+            player_speed = moveSpeed;
+        }
     }
     private void Animate()
     {
@@ -112,18 +121,17 @@ public class Player : MonoBehaviour
             if (HoldChack && isLeftChack)
             {
                 AnimateMove = Vector2.left;
-                lastMove.x = AnimateMove.x;
+                lastMove = new Vector2(AnimateMove.x, 0);
             }
             else if (HoldChack && isRigthChack)
             {
                 AnimateMove = Vector2.right;
-                lastMove.x = AnimateMove.x;
+                lastMove = new Vector2 (AnimateMove.x,0);
             }
             else
             {
                 AnimateMove.x = rb.velocity.x;
-                lastMove.x = rb.velocity.x;
-                lastMove.y = 0;
+                lastMove = new Vector2(rb.velocity.x, 0);
             }
         }
         else if (Mathf.Abs(rb.velocity.y) > 0.5f)
@@ -131,18 +139,17 @@ public class Player : MonoBehaviour
             if (HoldChack && isUpChack)
             {
                 AnimateMove = Vector2.up; ;
-                lastMove.y = AnimateMove.y;
+                lastMove = new Vector2(0, AnimateMove.y);
             }
             else if (HoldChack && isDownChack)
             {
                 AnimateMove = Vector2.down;
-                lastMove.y = AnimateMove.y;
+                lastMove = new Vector2(0, AnimateMove.y);
             }
             else
             {
                 AnimateMove.y = rb.velocity.y;
-                lastMove.y = rb.velocity.y;
-                lastMove.x = 0;
+                lastMove = new Vector2(0, AnimateMove.y);
             }
         }
         animator.SetFloat("Dir_X", AnimateMove.x);
@@ -169,26 +176,13 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void QuestionOpen()
     {
-        //掴めるオブジェクトのコンポーネント取得
-        if (collision.gameObject.tag == "Object" && CarryObject == null)
+        //問題の出し入れ
+        question_openCheck = PlayerAction.Question_OpenChack();
+        if(question_openCheck)
         {
-            //ファーストステージをクリアするとオブジェクトは移動できない
-            if (!FirstStage.FirststageClear)
-            {
-                CarryObject = collision.gameObject;
-                ObjectCarry.GetObject(CarryObject);
-            }
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject == CarryObject)
-        {
-            //掴めるオブジェクトのコンポーネント破棄
-            ObjectCarry.OutObject();
-            CarryObject = null;
+            Select_question.GuestionOpen();
         }
     }
 }

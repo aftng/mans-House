@@ -1,12 +1,10 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEditor;
-using System.Threading;
 
 public class Title_Font : MonoBehaviour
 {
-    SpriteRenderer sr;
+    public Title title;
+    private Image image;
     //êFèÓïÒ
     private float cla;
     private float claMax = 255;
@@ -16,22 +14,27 @@ public class Title_Font : MonoBehaviour
     private float Statecount = 1;
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
     }
     void FixedUpdate()
     {
         //éûä‘éÊìæ
         Timecount += Time.deltaTime;
        //åªç›ÇÃìßñæìxÇéÊìæ
-       cla = sr.color.a;
+       cla = image.color.a;
  
         if (Timecount > Statecount)
         {
             if (cla <= claMax)
             {
                 cla += Speed;
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
+                image.color = new Color(image.color.r, image.color.g, image.color.b, cla);
             }
+        }
+
+        if (title.BottanChack)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

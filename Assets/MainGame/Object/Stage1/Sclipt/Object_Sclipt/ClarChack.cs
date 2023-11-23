@@ -10,7 +10,6 @@ public class ClarChack : MonoBehaviour
     private int Objectrotatecorrect;
 
     private int Objectrotate;
-
     private bool TileHitChack = false;
     private bool clearChack = false;
 

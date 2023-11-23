@@ -5,23 +5,21 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
 {
     //ゲームクリアのための壁
     public GameObject stageClearwall;
-
- 　//オーディオ
+    private bool clearChack = false;
+    //オーディオ
     private AudioSource audioSource;
 
     [SerializeField]
     AudioClip clip;
 
-    private bool clearChack = false;
-    //  順番カウント
     private int ordercount = 1;
-
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
     public void OrderChack(int OrderNo)
     {
+        //カウントチェック
         if (clearChack) { return; }
 
         if (ordercount == OrderNo)
@@ -32,11 +30,11 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
         {
             ordercount = 1;
         }
-        Debug.Log(ordercount);
     }
 
     public void TwoOrdertChack(int OrderNo, int OrderNo_second)
     {
+        //カウントチェック
         if (clearChack) { return; }
 
         if (ordercount == OrderNo || ordercount == OrderNo_second)
@@ -48,13 +46,12 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
             ordercount = 1;
         }
         ClearChacks();
-        Debug.Log(ordercount);
     }
     public void ClearChacks()
     {
         //クリアカウント
         int Clearcount = 8;
-        if (ordercount == Clearcount)
+        if (ordercount >= Clearcount)
         {
             clearChack = true;
             StartCoroutine(ClearOudio());
@@ -62,7 +59,7 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
     }
     IEnumerator ClearOudio()
     {
-        //オブジェクト消去
+        //動物オブジェクトを探して消去
         GameObject[] objs = GameObject.FindGameObjectsWithTag("animal");
         foreach (GameObject Objects in objs)
         {
@@ -72,5 +69,12 @@ public class Third_Stage_Gamemaneger : MonoBehaviour
         yield return new WaitForSeconds(1);
         audioSource.PlayOneShot(clip);
         Destroy(stageClearwall);
+    }
+
+    //デバッグ用
+    public void DebugChack()
+    {
+        clearChack = true;
+        StartCoroutine(ClearOudio());
     }
 }

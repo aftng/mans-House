@@ -6,11 +6,10 @@ public class Object_Sound_rotate : MonoBehaviour
     private PlayerAction PlayerAction;
     //プレイヤ接触判定
     private bool isplayer = false;
-
+    public bool IsPlayer { get { return isplayer; } }
     //プレイヤからのキー入力
     private bool leftkey = false;
     private bool rightkey = false;
-    private bool PushChack;
     //ループの最低値
     private int rotateminimum = -1;
 
@@ -24,29 +23,26 @@ public class Object_Sound_rotate : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayerAction = FindObjectOfType<PlayerAction>();
         soundrotate = 0;
     }
     void Update()
     {
-        rightkey = PlayerAction.RotateRightChack();
-        leftkey = PlayerAction.RotateLeftChack();
-        PushChack = PlayerAction.DecisionChack();
-
         //接触判定
-        if (isplayer)
+        if (isplayer)      
         {
+            rightkey = PlayerAction.RotateRightChack();
+            leftkey = PlayerAction.RotateLeftChack();
             //プレイヤーからの入力
             if (rightkey)
             {
                 soundrotate++;
+                SErotate();
             }
             if (leftkey)
             {
                 soundrotate--;
+                SErotate();
             }
-            SErotate();
-            SEselect();
         }
         else
         {
@@ -65,19 +61,12 @@ public class Object_Sound_rotate : MonoBehaviour
         {
             soundrotate = clip.Length - 1;
         }
-        if (rightkey || leftkey)
-        {
-            audioSource.PlayOneShot(clip[soundrotate]);
-        }
+        audioSource.PlayOneShot(clip[soundrotate]);
     }
 
     public int SEselect()
-    {
-        //接触判定
-        if (isplayer && PushChack)
-        {           
-           audioSource.PlayOneShot(clip[soundrotate]);
-        }
+    {                
+        audioSource.PlayOneShot(clip[soundrotate]);
         return soundrotate;
     }
 
@@ -86,6 +75,7 @@ public class Object_Sound_rotate : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isplayer = true;
+            PlayerAction = collision.gameObject.GetComponent<PlayerAction>();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -93,6 +83,7 @@ public class Object_Sound_rotate : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isplayer = false;
+            PlayerAction = null;
         }
     }
 }

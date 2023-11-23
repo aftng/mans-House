@@ -7,7 +7,7 @@ public class ThirdStage_mirror : MonoBehaviour
     public GameObject Stageobj;
     public GameObject arrow;
     public Fade_Out Fade_Out;
-    public Game_Manager Game_Manager;
+    public Gameprogress Gameprogress;
     private GameObject player;
     //プレイヤー移動位置
     private float Playerposition = 47.3f;
@@ -18,7 +18,7 @@ public class ThirdStage_mirror : MonoBehaviour
     private float cameraposition;
     void Start()
     {
-        cameraposition = Game_Manager.Cameraposition[2];
+        cameraposition = Gameprogress.Cameraposition[2];
     }
 
     IEnumerator StageChange()
@@ -30,6 +30,7 @@ public class ThirdStage_mirror : MonoBehaviour
             Vector3 PlayerPos = player.transform.position;
             player.transform.position = new Vector3(
                 PlayerPos.x, Playerposition, PlayerPos.z);
+            player = null;
         }
         //カメラ座標変更
         {
@@ -43,13 +44,6 @@ public class ThirdStage_mirror : MonoBehaviour
 
     private void Object_Destroy()
     {
-        //矢印消去       
-        GameObject[] arrows = GameObject.FindGameObjectsWithTag("arrow");
-        foreach (GameObject Object in arrows)
-        {
-            Destroy(Object);
-        }
-
         //オブジェクト消去
         GameObject[] objs = GameObject.FindGameObjectsWithTag("ChangeMap");
         foreach (GameObject Objects in objs)

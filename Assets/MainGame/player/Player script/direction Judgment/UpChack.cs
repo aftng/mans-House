@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UpChack : MonoBehaviour
 {
-    private string UpChackTag = "Object";
+    private string UpChackTag = "statue";
     private bool isUpChack = false;
     private bool isUpChackEnter, isUpChackExit;
     public bool IsUpChack()

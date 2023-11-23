@@ -14,10 +14,7 @@ public class First_Stage_maneger : MonoBehaviour
     [SerializeField]
     AudioClip clip;
     private bool stageClear = false;
-    public bool FirststageClear
-    {
-        get { return stageClear; }
-    }
+    public bool FirststageClear { get { return stageClear; } }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -45,7 +42,7 @@ public class First_Stage_maneger : MonoBehaviour
         if (ObjectChack.Distinct().Count() == 1　&& ObjectChack[0] == true)
         {           
             StartCoroutine(ChackClear());
-        }
+        }      
     }
     IEnumerator ChackClear()
     {
@@ -63,5 +60,11 @@ public class First_Stage_maneger : MonoBehaviour
         yield return new WaitForSeconds(1);
         audioSource.PlayOneShot(clip);
         Destroy(wall);
+    }
+    //デバッグ用
+    public void DebugChack()
+    {
+        stageClear = true;
+        StartCoroutine(ClearOudio());
     }
 }

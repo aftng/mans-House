@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.CullingGroup;
 
 public class Opning_player : MonoBehaviour
 {
@@ -34,18 +31,9 @@ public class Opning_player : MonoBehaviour
     private void Animate()
     {
         //アニメーション
-        if (Mathf.Abs(rb.velocity.x) > 0.5f)
-        {    
-                Move.x = rb.velocity.x;
-                lastMove.x = rb.velocity.x;
-                lastMove.y = 0;
-        }
-        if (Mathf.Abs(rb.velocity.y) > 0.5f)
-        {         
-                Move.y = rb.velocity.y;
-                lastMove.y = rb.velocity.y;
-                lastMove.x = 0;
-        }
+        Move.y = rb.velocity.y;
+        lastMove.y = rb.velocity.y;
+        lastMove.x = 0;
 
         animator.SetFloat("Dir_X", Move.x);
         animator.SetFloat("Dir_Y", Move.y);

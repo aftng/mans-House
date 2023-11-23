@@ -5,9 +5,8 @@ public class Stage_Move : MonoBehaviour
 {
     private GameObject player;
     public GameObject cameraMan;
-
+    public Gameprogress Gameprogress;
     public Fade_Out Fade_Out;
-    public Game_Manager Game_Manager;
 
     //プレイヤー移動位置
     [SerializeField]
@@ -19,7 +18,7 @@ public class Stage_Move : MonoBehaviour
     private float cameraposition;
     void Start()
     {
-        cameraposition = Game_Manager.Cameraposition[CameraMoveNo];
+        cameraposition = Gameprogress.Cameraposition[CameraMoveNo];
     }
     IEnumerator StageChange()
     {

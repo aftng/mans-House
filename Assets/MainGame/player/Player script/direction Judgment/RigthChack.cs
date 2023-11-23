@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RigthChack : MonoBehaviour
 {
-    private string RigthChackTag = "Object";
+    private string RigthChackTag = "statue";
     private bool isRigthChack = false;
     private bool isRigthChackEnter, isRigthChackExit;
     public bool IsRigthChack()

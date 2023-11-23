@@ -5,19 +5,14 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
 {   
     public GameObject ThirdStage_Object;
     private bool clearChack = false;
-    public bool ClearChack
-    {
-        get { return clearChack; }
-    }
+    public bool ClearChack  { get { return clearChack; }}
     //クリアオーディオ
     private AudioSource audioSource;
 
     [SerializeField]
     AudioClip clip;
-
     //  順番カウント
     private int ordercount = 1;
-
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -35,7 +30,6 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
             ordercount = 1;
         }
     }
-
     public void OrdertwiceChack(int OrderNo,int OrderNo_second)
     {
         if (clearChack) { return; }
@@ -54,7 +48,7 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
     {
          //クリアカウント
          int Clearcount = 8;
-        if (ordercount == Clearcount)
+        if (ordercount >= Clearcount)
         {
             clearChack = true;
             StartCoroutine(CurearOudio());
@@ -65,5 +59,12 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
         yield return new WaitForSeconds(1);
         audioSource.PlayOneShot(clip);
         Instantiate(ThirdStage_Object, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    //デバッグ用
+    public void DebugChack()
+    {
+        clearChack = true;
+        StartCoroutine(CurearOudio());
     }
 }

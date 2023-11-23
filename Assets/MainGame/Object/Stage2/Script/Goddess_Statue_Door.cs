@@ -20,29 +20,11 @@ public class Goddess_Statue_Door : MonoBehaviour
 
     private bool ClearChack;
 
-    IEnumerator TestCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        //プレイヤー座標変更
-        {
-            Player.transform.position = PlayermovePos;
-            Player = null;
-        }
-        Object_Destroy();
-        Object_Instantiate();
-    }
     private void Object_Destroy()
     {
-        //矢印消去
-        GameObject[] arrows = GameObject.FindGameObjectsWithTag("arrow");
-        foreach (GameObject Obj in arrows)
-        {
-            Destroy(Obj);
-        }
-
         //オブジェクト消去
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("ChangeMap");
-        foreach (GameObject Objects in objs)
+        GameObject[] Map = GameObject.FindGameObjectsWithTag("ChangeMap");
+        foreach (GameObject Objects in Map)
         {
             Destroy(Objects);
         }
@@ -60,7 +42,17 @@ public class Goddess_Statue_Door : MonoBehaviour
             Instantiate(Clearobj, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
-
+    IEnumerator TestCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        //プレイヤー座標変更
+        {
+            Player.transform.position = PlayermovePos;
+            Player = null;
+        }
+        Object_Destroy();
+        Object_Instantiate();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //プレイヤー接触判定

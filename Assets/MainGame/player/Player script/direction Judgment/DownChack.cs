@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DownChack : MonoBehaviour
 {
-    private string DownChackTag = "Object";
+    private string DownChackTag = "statue";
     private bool isDownChack = false;
     private bool isDownChackEnter, isDownChackExit;
     public bool IsDownChack()

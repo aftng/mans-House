@@ -4,7 +4,6 @@ public class Correct_Sound : MonoBehaviour
 {
     //他スクリプト
     public Object_Sound_rotate Object_Sound_rotate;
-    public Sound_Player_Chack Player_Chack;
     private Third_Stage_Gamemaneger third_Stage_Gamemanege;
     private PlayerAction PlayerAction;
 
@@ -18,9 +17,6 @@ public class Correct_Sound : MonoBehaviour
     [SerializeField]
     private int correctorder;
 
-    //サウンド選択
-    private int Soundrotate;
-
     //サウンド正解数
     [SerializeField]
     private int ObjectrotateChack;
@@ -33,14 +29,13 @@ public class Correct_Sound : MonoBehaviour
     void Update()
     {
         //他のスクリプトから変数取得
-        Soundrotate = Object_Sound_rotate.SEselect();
         PushChack = PlayerAction.DecisionChack();
-        isplayer = Player_Chack.IsPlayerChack();
+        isplayer = Object_Sound_rotate.IsPlayer;
 
         //オブジェクトの音の高さの正判定
         if (isplayer && PushChack)
         {
-            if (Soundrotate == ObjectrotateChack)
+            if (Object_Sound_rotate.SEselect() == ObjectrotateChack)
             {
                 third_Stage_Gamemanege.OrderChack(correctorder);
             }

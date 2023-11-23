@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeftChack : MonoBehaviour
 {
-    private string LeftChackTag = "Object";
+    private string LeftChackTag = "statue";
     private bool isLeftChack = false;
     private bool isLeftChackEnter, isLeftChackExit;
                 

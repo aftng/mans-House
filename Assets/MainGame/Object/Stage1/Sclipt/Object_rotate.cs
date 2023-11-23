@@ -3,11 +3,11 @@ using UnityEngine;
 public class Object_rotate : MonoBehaviour
 {
     //オブジェクト回転
-    private int objectrotate = 0;
+    private int objectrotateNo = 0;
     public int Objectrotate
     {
-        get { return objectrotate; }
-        set { objectrotate = value; }
+        get { return objectrotateNo; }
+        set { objectrotateNo = value; }
     }
 
     //オブジェクト回転絵取得
@@ -25,22 +25,19 @@ public class Object_rotate : MonoBehaviour
         Sr = GetComponent<SpriteRenderer>();
         Sr.sprite = objectSprite[0];
     }
-    void Update()
-    {
-        Objectloop();
-    }
-    private void Objectloop()
+    public void Objectloop()
     {
         //オブジェクト回転ループ
         //objectrotateの値の0～3の間でループ
-        if (objectrotate >= objectSprite.Length)
+        
+        if (objectrotateNo >= objectSprite.Length)
         {
-            objectrotate = Rotateminimum + 1;
+            objectrotateNo = Rotateminimum + 1;
         }
-        if (objectrotate <= Rotateminimum)
+        if (objectrotateNo <= Rotateminimum)
         {
-            objectrotate = objectSprite.Length - 1;
+            objectrotateNo = objectSprite.Length - 1;
         }
-        Sr.sprite = objectSprite[objectrotate];
+        Sr.sprite = objectSprite[objectrotateNo];
     }
 }

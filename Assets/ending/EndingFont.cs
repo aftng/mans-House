@@ -1,22 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndingFont : MonoBehaviour
 {
     //Fontスピード
-    private float Speed = 0.045f;
-    
+    private float FontSpeed = 5f;
+    private RectTransform RectTransform;
+
+    private void Start()
+    {
+        RectTransform = GetComponent<RectTransform>();
+    }
     //フォントの現在位置と止まる場所
     private float FontPosY;
     private float FontstopPos = 0.0f;
     void FixedUpdate()
     {
-        FontPosY = this.transform.position.y;
+        FontPosY = RectTransform.anchoredPosition.y;
         if ( FontPosY >= FontstopPos)
         {           
-           transform.position -= new Vector3(0, 1, 0) * Speed;
+           transform.position -= new Vector3(0, 1, 0) * FontSpeed;
         }
         else
         {

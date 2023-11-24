@@ -19,6 +19,8 @@ public class GoddessStatue_Correct_Sound : MonoBehaviour
 
     [SerializeField]
     private int secondcorrectorder;
+    //サウンド選択
+    private int Soundrotate;
 
     //サウンド正解数
     [SerializeField]
@@ -38,7 +40,8 @@ public class GoddessStatue_Correct_Sound : MonoBehaviour
         //オブジェクトの音の高さの正判定
         if (isplayer && PushChack)
         {
-            if (Object_Sound_rotate.SEselect() == ObjectrotateChack)
+            Soundrotate = Object_Sound_rotate.SEselect();
+            if (Soundrotate == ObjectrotateChack)
             {
                 third_Stage_Gamemanege.TwoOrdertChack(correctorder, secondcorrectorder);
             }

@@ -58,6 +58,12 @@ public class Second_Stage_Gamemaneger : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         audioSource.PlayOneShot(clip);
+        //ñÓè¡ãé
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("arrow");
+        foreach (GameObject Objects in objs)
+        {
+            Destroy(Objects);
+        }
         Instantiate(ThirdStage_Object, new Vector3(0, 0, 0), Quaternion.identity);
     }
 

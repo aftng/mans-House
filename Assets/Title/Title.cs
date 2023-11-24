@@ -18,6 +18,7 @@ public class Title : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         image = GetComponent<Image>();
         image.enabled = false;
+        Cursor.visible = false;
     }
     void Update()
     {

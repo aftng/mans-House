@@ -16,6 +16,7 @@ public class Ending_player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Cursor.visible = false;
     }
     void FixedUpdate()
     {

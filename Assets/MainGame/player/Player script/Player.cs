@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         player_speed = moveSpeed;
+        Cursor.visible = false;
     }
     void Update()
     {

@@ -10,6 +10,7 @@ public class Opning_Ghost : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Cursor.visible = false;
     }
     void FixedUpdate()
     {

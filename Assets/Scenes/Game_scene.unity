@@ -647,7 +647,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178768757 stripped
 GameObject:
@@ -1375,19 +1375,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -1646,19 +1646,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -1727,17 +1727,6 @@ Transform:
   m_Father: {fileID: 561971216}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &471675429 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4894692591267824561, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
-  m_PrefabInstance: {fileID: 8323605908314031300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce9e00178f73d846ad46ca019473939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,19 +2134,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -2177,17 +2166,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
---- !u!114 &680411320 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8703325565570841383, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
-  m_PrefabInstance: {fileID: 8323605908314031300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e184c5d7770150949a08318f3c82b449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &744513284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2411,19 +2389,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -2447,28 +2425,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
---- !u!114 &817186889 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8477679350636865001, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
-  m_PrefabInstance: {fileID: 8323605908314031300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f97d62488ac8e4eb12efc44adfd9e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &832900362 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2314273146907088267, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
-  m_PrefabInstance: {fileID: 8323605908314031300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d780412b434e48478d35022dfa0ce21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &849143480
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,19 +10606,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -11390,19 +11346,19 @@ PrefabInstance:
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: UpChack
       value: 
-      objectReference: {fileID: 832900362}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: DownChack
       value: 
-      objectReference: {fileID: 680411320}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: LeftChack
       value: 
-      objectReference: {fileID: 1850972642}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: RigthChack
       value: 
-      objectReference: {fileID: 817186889}
+      objectReference: {fileID: 0}
     - target: {fileID: 7839962137459571369, guid: 54054922f6a67f646a0a5329cece34bd, type: 3}
       propertyPath: clearChack
       value: 
@@ -11955,7 +11911,7 @@ RectTransform:
   m_Children:
   - {fileID: 29859913}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15354,17 +15310,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1850972642 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 843116982748962515, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
-  m_PrefabInstance: {fileID: 8323605908314031300}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaccf1edbb5a1374ea58f8d4e4a1b438, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1927494775
 GameObject:
   m_ObjectHideFlags: 0
@@ -16006,7 +15951,7 @@ PrefabInstance:
     - target: {fileID: 616501804957320293, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
       propertyPath: ObjectCarry
       value: 
-      objectReference: {fileID: 471675429}
+      objectReference: {fileID: 0}
     - target: {fileID: 616501804957320293, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
       propertyPath: Game_Manager
       value: 
@@ -16016,6 +15961,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 130493054}
     - target: {fileID: 616501804957320293, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
+      propertyPath: Select_question
+      value: 
+      objectReference: {fileID: 29859918}
+    - target: {fileID: 3590189342657880749, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
+      propertyPath: Gameprogress
+      value: 
+      objectReference: {fileID: 130493054}
+    - target: {fileID: 3590189342657880749, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
       propertyPath: Select_question
       value: 
       objectReference: {fileID: 29859918}
@@ -16075,6 +16028,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8841089392863552889, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}
+      propertyPath: FirstStage
+      value: 
+      objectReference: {fileID: 371061682}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ee5db6e2018bfc4b968f55ddf786ab1, type: 3}

@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class ObjectCarry : MonoBehaviour
 {
-    public PlayerAction PlayerAction;
     public First_Stage_maneger FirstStage;
-    private Object_rotate Object_rotate;
-    private GameObject carryObject;
-    public GameObject CarryObject{ get { return carryObject; } }
-    //プレイヤからのキー入力
-    private bool leftkey;
-    private bool rightkey;
-
+    private Object_rotate Object_rotate = null;
+    private GameObject carryObject = null;
+    public GameObject CarryObject { get { return carryObject; } }
     //オブジェクト回転絵番号
     private int ObjectrotateNo;
-    private Vector2 ObjectMove;
 
     [SerializeField]
     private AudioClip Objectclip;
@@ -23,6 +17,11 @@ public class ObjectCarry : MonoBehaviour
     //コンポーネント取得
     private Rigidbody2D CarryObjectrb;
     private AudioSource CarryObjectAS;
+    private void Update()
+    {
+        if (FirstStage.FirststageClear) { return; }
+        ObjectRotate();
+    }
     public void Objectoperation(Vector2 PlayerMove, float ObjectSpeed)
     {
         //ファーストステージをクリアするとオブジェクトを操作出来ない
@@ -35,43 +34,29 @@ public class ObjectCarry : MonoBehaviour
             CarryObjectAS.Stop();
             return;
         }
-            //オブジェクトの移動       
-            ObjectMove = PlayerMove * ObjectSpeed;
 
         if (CarryObjectrb.bodyType != RigidbodyType2D.Dynamic)
         {
             CarryObjectrb.bodyType = RigidbodyType2D.Dynamic;
         }
-        CarryObjectrb.velocity = new Vector2(ObjectMove.x, ObjectMove.y);
+        CarryObjectrb.velocity = new Vector2(PlayerMove.x, PlayerMove.y).normalized * ObjectSpeed;
         ObjectSound();
     }
-    public void ObjectRotate()
+    private void ObjectRotate()
     {
-        if (FirstStage.FirststageClear) { return; }
         //オブジェクトの回転
-        rightkey = PlayerAction.RotateRightChack();
-        leftkey = PlayerAction.RotateLeftChack();
+        if (Object_rotate == null) { return; }
         ObjectrotateNo = Object_rotate.Objectrotate;
-        if (rightkey)
+        if (Input.GetButtonDown("Right"))
         {
             ObjectrotateNo++;
         }
-        else if (leftkey)
+        else if (Input.GetButtonDown("Left"))
         {
             ObjectrotateNo--;
         }
         Object_rotate.Objectrotate = ObjectrotateNo;
         Object_rotate.Objectloop();
-    }
-    public void ObjectMoveStop()
-    {
-        //プレイヤーがホールドキーを放したときの処理
-        if(CarryObjectrb.bodyType != RigidbodyType2D.Kinematic)
-        {
-            CarryObjectrb.velocity = Vector2.zero;
-            CarryObjectrb.bodyType = RigidbodyType2D.Kinematic;
-            CarryObjectAS.Stop();
-        }       
     }
     private void ObjectSound()
     {
@@ -91,42 +76,66 @@ public class ObjectCarry : MonoBehaviour
             }
         }
     }
-
-    public void GetObject(GameObject Object)
+    public void HitChack(Vector2 Anim)
     {
-        //コンポーネント取得
-        CarryObjectrb = Object.GetComponent<Rigidbody2D>();
-        CarryObjectAS = Object.GetComponent<AudioSource>();
-        Object_rotate = Object.GetComponentInChildren<Object_rotate>();
+        //石像を掴む
+        if (carryObject == null)
+        {
+            if (FirstStage.FirststageClear) { return; }
+            if (Input.GetButton("Objectcatch"))
+            {
+                //レイヤー発射
+                Rayfly(Anim);
+            }
+        }
+        else
+        {
+            //プレイヤーがホールドキーを放したときの処理
+            if (Input.GetButtonUp("Objectcatch"))
+            {
+                CarryObjectrb.velocity = Vector2.zero;
+                CarryObjectrb.bodyType = RigidbodyType2D.Kinematic;
+                CarryObjectAS.Stop();
+                CarryObjectrb = null;
+                CarryObjectAS = null;
+                carryObject = null;
+            }
+        }
     }
-    public void OutObject()
+
+    private void Rayfly(Vector2 dir)
     {
-        //オブジェクト破棄
-        CarryObjectrb.velocity = Vector2.zero;
-        CarryObjectAS.Stop();
-        CarryObjectrb = null;
-        Object_rotate = null;
-        CarryObjectAS = null;
+        //レイヤー長さ
+        float distance = 0.4f;
+        var hits = Physics2D.RaycastAll(transform.position, dir, distance);
+        Debug.DrawRay(transform.position, (dir * 0.064f), Color.blue);
+        foreach (var hit in hits)
+        {
+            if (hit.collider.CompareTag("statue"))
+            {
+                carryObject = hit.collider.gameObject;
+                CarryObjectrb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                CarryObjectAS = hit.collider.gameObject.GetComponent<AudioSource>();
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //掴めるオブジェクトのコンポーネント取得
-        if (collision.gameObject.tag == "statue" && carryObject == null)
+        //回転用の接触判定
+        if (FirstStage.FirststageClear) { return; }
+        if (collision.gameObject.tag == "statue" && Object_rotate == null)
         {
-            //ファーストステージをクリアするとオブジェクトを取得しない
-            if (FirstStage.FirststageClear) { return; }
-            carryObject = collision.gameObject;
-            GetObject(carryObject);
+            Object_rotate = collision.gameObject.GetComponentInChildren<Object_rotate>();
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //掴めるオブジェクトのコンポーネント破棄
-        if (collision.gameObject == carryObject)
+        //Object_rotateの親オブジェクトが離れたらObject_rotateをnullにする
+        if (Object_rotate != null && collision.gameObject == Object_rotate.gameObject.transform.parent.gameObject)
         {
-            OutObject();
-            carryObject = null;
+            Object_rotate = null;
         }
     }
 }

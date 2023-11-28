@@ -3,20 +3,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //他のスクリプト取得
-    public UpChack UpChack;
-    public DownChack DownChack;
-    public RigthChack RigthChack;
-    public LeftChack LeftChack;
-    public PlayerAction PlayerAction;
     public Gameprogress Gameprogress;
     public ObjectCarry ObjectCarry;
     public Select_question Select_question;
-
-    //上下左右接触判定
-    private bool isUpChack;
-    private bool isDownChack;
-    private bool isRigthChack;
-    private bool isLeftChack;
 
     [SerializeField]
     private float moveSpeed;
@@ -28,8 +17,6 @@ public class Player : MonoBehaviour
     private Vector2 playermove;
 
     private bool playerstop = false;
-    private bool HoldChack;
-    private bool question_openCheck;
 
     //アニメーション制御
     private Vector2 lastMove;
@@ -42,6 +29,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,26 +41,21 @@ public class Player : MonoBehaviour
     void Update()
     {
         //他のスクリプト変数取得
-        isUpChack = UpChack.IsUpChack();
-        isRigthChack = RigthChack.IsRigthChack();
-        isLeftChack = LeftChack.IsLeftChack();
-        isDownChack = DownChack.IsDownChack();
-        HoldChack = PlayerAction.HoldChack();
         playerstop = Gameprogress.PlayerStop;
 
         //移動入力
         playermove.x = Input.GetAxisRaw("Horizontal");
         playermove.y = Input.GetAxisRaw("Vertical");
-        
+
         //斜め移動禁止
         if (playermove.x != 0 && playermove.y != 0)
         {
             playermove = Vector2.zero;
-        }         
-        Objectsoperation();  
+        }
         QuestionOpen();
         Animate();
         PlayerSound();
+        ObjectCarry.HitChack(lastMove);
     }
     void FixedUpdate()
     {
@@ -81,32 +64,28 @@ public class Player : MonoBehaviour
             rb.velocity = Vector2.zero;
             return;
         }
+        Objectsoperation();
         rb.velocity = new Vector2(playermove.x, playermove.y).normalized * player_speed;
-        AnimateMove = rb.velocity;
     }
     private void Objectsoperation()
     {
         if (ObjectCarry.CarryObject != null)
         {
-            //オブジェクト回転
-            ObjectCarry.ObjectRotate();
             //オブジェクト移動時のスピードとオブジェクト移動
-            if ( HoldChack && (isUpChack || isDownChack))
+            if (Input.GetButton("Objectcatch"))
             {
-                player_speed = Objectcarryspeed;
-                playermove.x = 0;
-                ObjectCarry.Objectoperation(playermove, player_speed);
-            }
-            else if (HoldChack && (isRigthChack || isLeftChack))
-            {
-                player_speed = Objectcarryspeed;
-                playermove.y = 0;
-                ObjectCarry.Objectoperation(playermove, player_speed);
-            }
-            else
-            {
-                player_speed = moveSpeed;
-                ObjectCarry.ObjectMoveStop();
+                if (lastMove.y != 0)
+                {
+                    player_speed = Objectcarryspeed;
+                    playermove.x = 0;
+                    ObjectCarry.Objectoperation(playermove, player_speed);
+                }
+                else if (lastMove.x != 0)
+                {
+                    player_speed = Objectcarryspeed;
+                    playermove.y = 0;
+                    ObjectCarry.Objectoperation(playermove, player_speed);
+                }
             }
         }
         else
@@ -116,42 +95,24 @@ public class Player : MonoBehaviour
     }
     private void Animate()
     {
-        //オブジェクト移動時のPlayerの向きを固定する
-        if (Mathf.Abs(rb.velocity.x) > 0.5f)
+        //アニメーション
+        if (ObjectCarry.CarryObject == null)
         {
-            if (HoldChack && isLeftChack)
+            if (Mathf.Abs(rb.velocity.x) > 0.5f)
             {
-                AnimateMove = Vector2.left;
+                AnimateMove = rb.velocity;
                 lastMove = new Vector2(AnimateMove.x, 0);
             }
-            else if (HoldChack && isRigthChack)
+            else if (Mathf.Abs(rb.velocity.y) > 0.5f)
             {
-                AnimateMove = Vector2.right;
-                lastMove = new Vector2 (AnimateMove.x,0);
-            }
-            else
-            {
-                AnimateMove.x = rb.velocity.x;
-                lastMove = new Vector2(rb.velocity.x, 0);
+                AnimateMove = rb.velocity;
+                lastMove = new Vector2(0, AnimateMove.y);
             }
         }
-        else if (Mathf.Abs(rb.velocity.y) > 0.5f)
+        else
         {
-            if (HoldChack && isUpChack)
-            {
-                AnimateMove = Vector2.up; ;
-                lastMove = new Vector2(0, AnimateMove.y);
-            }
-            else if (HoldChack && isDownChack)
-            {
-                AnimateMove = Vector2.down;
-                lastMove = new Vector2(0, AnimateMove.y);
-            }
-            else
-            {
-                AnimateMove.y = rb.velocity.y;
-                lastMove = new Vector2(0, AnimateMove.y);
-            }
+            //オブジェクト移動時のアニメーション
+            AnimateMove = lastMove;
         }
         animator.SetFloat("Dir_X", AnimateMove.x);
         animator.SetFloat("Dir_Y", AnimateMove.y);
@@ -180,8 +141,7 @@ public class Player : MonoBehaviour
     private void QuestionOpen()
     {
         //問題の出し入れ
-        question_openCheck = PlayerAction.Question_OpenChack();
-        if(question_openCheck)
+        if (Input.GetButtonDown("Question_Open"))
         {
             Select_question.GuestionOpen();
         }

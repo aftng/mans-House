@@ -2,14 +2,10 @@ using UnityEngine;
 
 public class Object_Sound_rotate : MonoBehaviour
 {
-    //他のスクリプト
-    private PlayerAction PlayerAction;
     //プレイヤ接触判定
     private bool isplayer = false;
     public bool IsPlayer { get { return isplayer; } }
-    //プレイヤからのキー入力
-    private bool leftkey = false;
-    private bool rightkey = false;
+
     //ループの最低値
     private int rotateminimum = -1;
 
@@ -30,15 +26,13 @@ public class Object_Sound_rotate : MonoBehaviour
         //接触判定
         if (isplayer)      
         {
-            rightkey = PlayerAction.RotateRightChack();
-            leftkey = PlayerAction.RotateLeftChack();
             //プレイヤーからの入力
-            if (rightkey)
+            if (Input.GetButtonDown("Right"))
             {
                 soundrotate++;
                 SErotate();
             }
-            if (leftkey)
+            if (Input.GetButtonDown("Left"))
             {
                 soundrotate--;
                 SErotate();
@@ -75,7 +69,6 @@ public class Object_Sound_rotate : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isplayer = true;
-            PlayerAction = collision.gameObject.GetComponent<PlayerAction>();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -83,7 +76,6 @@ public class Object_Sound_rotate : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isplayer = false;
-            PlayerAction = null;
         }
     }
 }

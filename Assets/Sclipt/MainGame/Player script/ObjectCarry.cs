@@ -6,8 +6,7 @@ public class ObjectCarry : MonoBehaviour
 {
     public First_Stage_maneger FirstStage;
     private Object_rotate Object_rotate = null;
-    private GameObject carryObject = null;
-    public GameObject CarryObject { get { return carryObject; } }
+
     //オブジェクト回転絵番号
     private int ObjectrotateNo;
 
@@ -17,9 +16,9 @@ public class ObjectCarry : MonoBehaviour
     //コンポーネント取得
     private Rigidbody2D CarryObjectrb;
     private AudioSource CarryObjectAS;
+    public Rigidbody2D CarryObject { get { return CarryObjectrb; } }
     private void Update()
     {
-        if (FirstStage.FirststageClear) { return; }
         ObjectRotate();
     }
     public void Objectoperation(Vector2 PlayerMove, float ObjectSpeed)
@@ -28,10 +27,7 @@ public class ObjectCarry : MonoBehaviour
         if (FirstStage.FirststageClear)
         {
             //機能停止
-            carryObject = null;
-            CarryObjectrb.velocity = Vector2.zero;
-            CarryObjectrb.bodyType = RigidbodyType2D.Static;
-            CarryObjectAS.Stop();
+            CarryObjectStop();
             return;
         }
 
@@ -79,26 +75,17 @@ public class ObjectCarry : MonoBehaviour
     public void HitChack(Vector2 Anim)
     {
         //石像を掴む
-        if (carryObject == null)
+        if (CarryObjectrb == null)
         {
-            if (FirstStage.FirststageClear) { return; }
-            if (Input.GetButton("Objectcatch"))
-            {
-                //レイヤー発射
-                Rayfly(Anim);
-            }
+            //レイヤー発射
+            Rayfly(Anim);
         }
         else
         {
             //プレイヤーがホールドキーを放したときの処理
             if (Input.GetButtonUp("Objectcatch"))
             {
-                CarryObjectrb.velocity = Vector2.zero;
-                CarryObjectrb.bodyType = RigidbodyType2D.Kinematic;
-                CarryObjectAS.Stop();
-                CarryObjectrb = null;
-                CarryObjectAS = null;
-                carryObject = null;
+                CarryObjectStop();
             }
         }
     }
@@ -107,35 +94,40 @@ public class ObjectCarry : MonoBehaviour
     {
         //レイヤー長さ
         float distance = 0.4f;
+
+        //レイヤーを飛ばして接触判定
         var hits = Physics2D.RaycastAll(transform.position, dir, distance);
-        Debug.DrawRay(transform.position, (dir * 0.064f), Color.blue);
+
+        //ヒットしたすべてのオブジェクトを検索
         foreach (var hit in hits)
         {
-            if (hit.collider.CompareTag("statue"))
+            if (hit.collider.CompareTag("statue") && CarryObjectrb == null)
             {
-                carryObject = hit.collider.gameObject;
-                CarryObjectrb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-                CarryObjectAS = hit.collider.gameObject.GetComponent<AudioSource>();
+                if (Input.GetButton("Objectcatch") && CarryObjectrb == null)
+                {
+                    CarryObjectrb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                    CarryObjectAS = hit.collider.gameObject.GetComponent<AudioSource>();
+                }
+                 
+                if(Object_rotate == null)
+                {
+                    Object_rotate = hit.collider.gameObject.GetComponentInChildren<Object_rotate>();
+                }
+            }
+            else
+            {
+                Object_rotate = null;
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void CarryObjectStop()
     {
-        //回転用の接触判定
-        if (FirstStage.FirststageClear) { return; }
-        if (collision.gameObject.tag == "statue" && Object_rotate == null)
-        {
-            Object_rotate = collision.gameObject.GetComponentInChildren<Object_rotate>();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //Object_rotateの親オブジェクトが離れたらObject_rotateをnullにする
-        if (Object_rotate != null && collision.gameObject == Object_rotate.gameObject.transform.parent.gameObject)
-        {
-            Object_rotate = null;
-        }
+        CarryObjectrb.velocity = Vector2.zero;
+        CarryObjectrb.bodyType = RigidbodyType2D.Kinematic;
+        CarryObjectAS.Stop();
+        CarryObjectrb = null;
+        CarryObjectAS = null;
+        Object_rotate = null;
     }
 }

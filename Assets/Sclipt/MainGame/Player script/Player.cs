@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
             {
                 if (lastMove.y != 0)
                 {
+                   
                     player_speed = Objectcarryspeed;
                     playermove.x = 0;
                     ObjectCarry.Objectoperation(playermove, player_speed);
